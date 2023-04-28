@@ -30,13 +30,15 @@ int main(int argc, char *argv[])
     char *projectDirName = argv[1];
 
     std::string srcFileBuffer =
-        "#include <iostream>\n\nint main(){\n\tstd::cout << \"Helllo World\\n\";\n\treturn 0;\n}\n";
+        "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << \"Helllo World\\n\";\n\treturn 0;\n}\n";
     std::string includeFileBuffer =
-        "#ifndef HEADER_FILE_INCLUDED\n#define HEADER_FILE_INCLUDED\n#endif //HEADER_FILE_INCLUDED\n";
+        "#ifndef HEADER_FILE_INCLUDED\n#define HEADER_FILE_INCLUDED\n#endif // HEADER_FILE_INCLUDED\n#ifdef "
+        "HEADER_FILE_DEFINITION\n#endif // HEADER_FILE_DEFINITION\n";
     std::string cmakeFileBuffer =
         "cmake_minimum_required(VERSION 3.10)\nset(CXX_STANDARD 20)\nset(CXX_STANDARD_REQUIRED ON)\n\nproject(";
     cmakeFileBuffer += projectDirName;
-    cmakeFileBuffer += " VERSION 1.0)\n\nadd_executable(main src/main.cpp)\n\ntarget_include_directories(main PRIVATE \"include/\")\n";
+    cmakeFileBuffer +=
+        " VERSION 1.0)\n\nadd_executable(main src/main.cpp)\n\ntarget_include_directories(main PRIVATE \"include/\")\n";
 
     if (!getCurrentDir(currentPath, STRING_SIZE_NAME_MAX))
         return errno;
