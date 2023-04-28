@@ -29,8 +29,10 @@ int main(int argc, char *argv[])
     char cmakeFileName[STRING_SIZE_NAME_MAX];
     char *projectDirName = argv[1];
 
-    std::string srcFileBuffer =
-        "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << \"Helllo World\\n\";\n\treturn 0;\n}\n";
+    char clangFormatCmd[STRING_SIZE_NAME_MAX] = "clang-format -style=microsoft -dump-config > ";
+    strcat(clangFormatCmd, projectDirName);
+    strcat(clangFormatCmd, "/.clang-format");
+
     std::string srcFileBuffer = "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
                                 "\"Helllo World\\n\";\n\treturn 0;\n}\n";
     std::string includeFileBuffer =
@@ -128,6 +130,9 @@ int main(int argc, char *argv[])
     std::ofstream cmakeFile(cmakeFileName);
     cmakeFile << cmakeFileBuffer;
     cmakeFile.close();
+
+    // Now generate clang-format config based on Microsoft style
+    system(clangFormatCmd);
 
     return 0;
 }
