@@ -113,6 +113,7 @@ int main(int argc, char *argv[])
     if (projectGenerate::appendPath(includeFileName, projectDirName))
     {
         std::cout << "Full path of the header file inside the include directory exceeds 256 characters\n";
+        return 1;
     }
     strcat(includeFileName, ".hpp");
 
@@ -125,6 +126,7 @@ int main(int argc, char *argv[])
     if (projectGenerate::appendPath(cmakeFileName, "CMakeLists.txt"))
     {
         std::cout << "Full path of the CMakeLists.txt file inside the project directory exceeds 256 characters\n";
+        return 1;
     }
 
     std::ofstream cmakeFile(cmakeFileName);
