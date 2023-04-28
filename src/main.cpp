@@ -31,6 +31,8 @@ int main(int argc, char *argv[])
 
     std::string srcFileBuffer =
         "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << \"Helllo World\\n\";\n\treturn 0;\n}\n";
+    std::string srcFileBuffer = "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
+                                "\"Helllo World\\n\";\n\treturn 0;\n}\n";
     std::string includeFileBuffer =
         "#ifndef HEADER_FILE_INCLUDED\n#define HEADER_FILE_INCLUDED\n#endif // HEADER_FILE_INCLUDED\n#ifdef "
         "HEADER_FILE_DEFINITION\n#endif // HEADER_FILE_DEFINITION\n";
