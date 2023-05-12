@@ -11,3 +11,5 @@ build/
 neovim.json
 
 .vs/
+
+compile_commands.json
