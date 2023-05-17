@@ -29,9 +29,16 @@ int main(int argc, char *argv[])
     char cmakeFileName[STRING_SIZE_NAME_MAX];
     char *projectDirName = argv[1];
 
+    // Generate a clang-format file based on Microsoft formatting style in the project directory
     char clangFormatCmd[STRING_SIZE_NAME_MAX] = "clang-format -style=microsoft -dump-config > ";
-    strcat(clangFormatCmd, projectDirName);
-    strcat(clangFormatCmd, "/.clang-format");
+    if(projectGenerate::strConcat(clangFormatCmd, projectDirName))
+    {
+        std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
+    }
+    if(projectGenerate::strConcat(clangFormatCmd, "/.clang-format"))
+    {
+        std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
+    }
 
     std::string srcFileBuffer = "#define HEADER_FILE_IMPLEMENTATION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
                                 "\"Helllo World\\n\";\n\treturn 0;\n}\n";
@@ -115,7 +122,10 @@ int main(int argc, char *argv[])
         std::cout << "Full path of the header file inside the include directory exceeds 256 characters\n";
         return 1;
     }
-    strcat(includeFileName, ".hpp");
+    if(projectGenerate::strConcat(includeFileName, ".hpp"))
+    {
+        std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
+    }
 
     std::ofstream includeFile(includeFileName);
     includeFile << includeFileBuffer;

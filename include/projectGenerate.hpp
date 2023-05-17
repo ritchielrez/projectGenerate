@@ -26,7 +26,6 @@ inline int appendPath(char *dest, const char *src)
     {
         strcat(dest, "/");
         strcat(dest, src);
-
         return 0;
     }
     return 1;
@@ -39,9 +38,19 @@ inline int makeDir(const char *path)
 
     if (system(cmd) == -1)
         return 1;
-
     return 0;
 }
+
+inline int strConcat(char *dst, const char *src)
+{
+    if(strlen(dst) + strlen(src) > STRING_SIZE_NAME_MAX)
+    {
+        return 1;
+    }
+    strcat(dst, src);
+    return 0;
+}
+
 } // namespace projectGenerate
 
 #endif // PROJECT_GENERATE_H
