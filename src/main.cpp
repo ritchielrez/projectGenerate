@@ -33,11 +33,11 @@ int main(int argc, char *argv[])
     strcat(clangFormatCmd, projectDirName);
     strcat(clangFormatCmd, "/.clang-format");
 
-    std::string srcFileBuffer = "#define HEADER_FILE_DEFINITION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
+    std::string srcFileBuffer = "#define HEADER_FILE_IMPLEMENTATION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
                                 "\"Helllo World\\n\";\n\treturn 0;\n}\n";
     std::string includeFileBuffer =
         "#ifndef HEADER_FILE_INCLUDED\n#define HEADER_FILE_INCLUDED\n#endif // HEADER_FILE_INCLUDED\n#ifdef "
-        "HEADER_FILE_DEFINITION\n#endif // HEADER_FILE_DEFINITION\n";
+        "HEADER_FILE_IMPLEMENTATION\n#endif // HEADER_FILE_IMPLEMENTATION\n";
     std::string cmakeFileBuffer =
         "cmake_minimum_required(VERSION 3.10)\nset(CXX_STANDARD 20)\nset(CXX_STANDARD_REQUIRED ON)\n\nproject(";
     cmakeFileBuffer += projectDirName;
