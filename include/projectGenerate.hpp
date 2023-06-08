@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifdef WINDOWS
+#ifdef WIN32
 #include <direct.h>
 #include <windows.h>
 #define GetCurrentDir _getcwd
@@ -20,11 +20,15 @@ namespace projectGenerate
 {
 inline int appendPath(char *dest, const char *src)
 {
-    int destlen = strlen(dest) + strlen(src) + 1;
+    std::size_t destlen = strlen(dest) + strlen(src) + 1;
 
     if (destlen <= STRING_SIZE_NAME_MAX)
     {
+#ifdef WIN32
+        strcat(dest, "\\");
+#else
         strcat(dest, "/");
+#endif
         strcat(dest, src);
         return 0;
     }

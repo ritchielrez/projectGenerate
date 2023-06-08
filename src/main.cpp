@@ -6,10 +6,10 @@
 #include <fstream>
 #include <iostream>
 
-#ifdef WINDOWS
+#ifdef WIN32
 #include <direct.h>
 #include <windows.h>
-#define GetCurrentDir _getcwd
+#define getCurrentDir _getcwd
 #else
 #include <signal.h>
 #include <unistd.h>
@@ -35,10 +35,17 @@ int main(int argc, char *argv[])
     {
         std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
     }
+#ifdef WIN32
+    if(projectGenerate::strConcat(clangFormatCmd, "\\.clang-format"))
+    {
+        std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
+    }
+#else
     if(projectGenerate::strConcat(clangFormatCmd, "/.clang-format"))
     {
         std::cout << "Concatenated string exceeds " << STRING_SIZE_NAME_MAX << " characters\n";
     }
+#endif
 
     std::string srcFileBuffer = "#define HEADER_FILE_IMPLEMENTATION\n#include <iostream>\n\nint main(){\n\tstd::cout << "
                                 "\"Helllo World\\n\";\n\treturn 0;\n}\n";
