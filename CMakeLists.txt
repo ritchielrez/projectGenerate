@@ -9,7 +9,12 @@ include(cmake/CompilerWarnings.cmake)
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/StaticAnalyzers.cmake)
 
-file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
+if(WIN32)
+    add_compile_definitions(PROJ_GEN_WINDOWS)
+endif(WIN32)
+if (UNIX)
+    add_compile_definitions(PROJ_GEN_UNIX)
+endif (UNIX)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
