@@ -16,6 +16,6 @@ if (UNIX)
     add_compile_definitions(PROJ_GEN_UNIX)
 endif (UNIX)
 
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} "src/main.cpp")
 
 target_include_directories(${PROJECT_NAME} PRIVATE "include/")
