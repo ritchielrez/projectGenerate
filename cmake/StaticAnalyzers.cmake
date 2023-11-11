@@ -22,6 +22,8 @@ if("${CPPCHECK_OPTIONS}" STREQUAL "")
       --suppress=unmatchedSuppression
       # noisy and incorrect sometimes
       --suppress=passedByValue
+      # warns nevertheless even though this case has been handled by the programmer
+      --suppress=terminateStrncpy
       # ignores code that cppcheck thinks is invalid C++
       --suppress=syntaxError
       --suppress=preprocessorErrorDirective
