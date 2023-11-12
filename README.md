@@ -16,7 +16,7 @@ cmake --build build
 
 Then run the executable with the project name to generate a new project:
 ```
-./build/projectGenerate my-cpp-project
+./build/projectGenerate create my-cpp-project
 ```
 
 #### And that's it, now you have your project generated, it is that simple.
