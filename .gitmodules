@@ -1,0 +1,6 @@
+[submodule "vendor/rit_str"]
+	path = vendor/rit_str
+	url = https://github.com/ritchielrez/rit_str
+[submodule "vendor/arena_allocator"]
+	path = vendor/arena_allocator
+	url = https://github.com/ritchielrez/arena_allocator
